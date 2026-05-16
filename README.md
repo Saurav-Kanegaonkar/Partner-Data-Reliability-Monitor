@@ -61,7 +61,3 @@ python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173`.
-
-## Resume-ready summary
-
-Built partner-data reliability monitor with synthetic conversion, API, and payout feeds, surfacing schema drift, duplicate events, and anomaly alerts for integration roadmap prioritization and customer-impact triage.
