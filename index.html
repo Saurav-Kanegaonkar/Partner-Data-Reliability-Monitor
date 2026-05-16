@@ -4,80 +4,58 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Partner Data Reliability Monitor</title>
-  <style>
-    :root { color-scheme: light; --ink:#142033; --muted:#5c667a; --line:#d9e0ea; --blue:#1d67d8; --red:#c23934; --amber:#b36b00; --green:#16794c; }
-    body { margin:0; font-family: Inter, Arial, sans-serif; color:var(--ink); background:#f6f8fb; }
-    main { max-width:1120px; margin:0 auto; padding:32px; }
-    header { display:flex; justify-content:space-between; gap:24px; align-items:flex-end; border-bottom:2px solid var(--ink); padding-bottom:18px; }
-    h1 { margin:0; font-size:32px; }
-    h2 { margin:0 0 14px; font-size:18px; }
-    p { line-height:1.5; }
-    .muted { color:var(--muted); }
-    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:22px 0; }
-    .card, section { background:white; border:1px solid var(--line); border-radius:8px; padding:16px; }
-    .metric { font-size:28px; font-weight:800; margin:4px 0; }
-    .label { color:var(--muted); font-size:13px; }
-    .split { display:grid; grid-template-columns:1.15fr .85fr; gap:18px; margin-top:18px; }
-    table { width:100%; border-collapse:collapse; font-size:14px; }
-    th, td { text-align:left; border-bottom:1px solid var(--line); padding:10px 8px; }
-    th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
-    .risk { font-weight:700; }
-    .high { color:var(--red); }
-    .med { color:var(--amber); }
-    .low { color:var(--green); }
-    .bar { height:10px; border-radius:999px; background:#edf1f7; overflow:hidden; }
-    .fill { height:100%; background:var(--blue); }
-    .memo li { margin:10px 0; }
-  </style>
+  <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
-  <main>
-    <header>
+  <main class="app">
+    <header class="hero">
       <div>
+        <p class="eyebrow">Reliability Ops</p>
         <h1>Partner Data Reliability Monitor</h1>
-        <p class="muted">Synthetic operating view for diagnosing integration reliability issues across partnership-marketing data feeds.</p>
+        <p>Investigation cockpit for partnership-marketing feeds: API payloads, CSV drops, pixel events, duplicate conversions, and payout reconciliation.</p>
       </div>
-      <div class="muted">impact.com Data Reliability Analyst proof artifact</div>
+      <div class="hero-card">
+        <span>Customer impact at risk</span>
+        <strong>$48k</strong>
+        <small>estimated payout exposure across high-severity incidents</small>
+      </div>
     </header>
 
-    <div class="grid">
-      <div class="card"><div class="label">Feeds Monitored</div><div class="metric">42</div><div class="muted">API, webhook, CSV, pixel</div></div>
-      <div class="card"><div class="label">Open Reliability Incidents</div><div class="metric">7</div><div class="muted">3 high severity</div></div>
-      <div class="card"><div class="label">Duplicate Event Rate</div><div class="metric">2.8%</div><div class="muted">+1.1 pp week over week</div></div>
-      <div class="card"><div class="label">Payout Gap Flagged</div><div class="metric">$48k</div><div class="muted">estimated commission exposure</div></div>
-    </div>
+    <section class="metric-grid" id="metrics"></section>
 
-    <div class="split">
-      <section>
-        <h2>Reliability Triage Queue</h2>
-        <table>
-          <thead><tr><th>Partner Feed</th><th>Signal</th><th>Likely Cause</th><th>Risk</th></tr></thead>
-          <tbody>
-            <tr><td>Creator API / Beauty</td><td>Schema drift: missing coupon_id</td><td>Payload version mismatch</td><td class="risk high">High</td></tr>
-            <tr><td>Affiliate CSV / Retail</td><td>Duplicate conversions spike</td><td>Retry logic replay</td><td class="risk high">High</td></tr>
-            <tr><td>Advocate Webhook / SaaS</td><td>Event-count drop</td><td>Expired token</td><td class="risk med">Medium</td></tr>
-            <tr><td>Publisher Pixel / Travel</td><td>Payout reconciliation gap</td><td>Currency transform bug</td><td class="risk med">Medium</td></tr>
-          </tbody>
-        </table>
-      </section>
+    <section class="main-grid">
+      <article class="panel wide">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Incident queue</p>
+            <h2>Root-cause triage by feed</h2>
+          </div>
+          <span class="pill">7 open incidents</span>
+        </div>
+        <div id="incident-table"></div>
+      </article>
 
-      <section>
-        <h2>Validation Coverage</h2>
-        <p class="label">Freshness checks</p><div class="bar"><div class="fill" style="width:92%"></div></div>
-        <p class="label">Schema checks</p><div class="bar"><div class="fill" style="width:81%"></div></div>
-        <p class="label">Duplicate checks</p><div class="bar"><div class="fill" style="width:76%"></div></div>
-        <p class="label">Payout reconciliation</p><div class="bar"><div class="fill" style="width:68%"></div></div>
-      </section>
-    </div>
+      <article class="panel">
+        <p class="eyebrow">Detection coverage</p>
+        <h2>Where validation rules catch issues before customers do</h2>
+        <div id="coverage"></div>
+      </article>
+    </section>
 
-    <section class="memo" style="margin-top:18px">
-      <h2>Roadmap Recommendations</h2>
-      <ol>
-        <li>Prioritize API schema-version monitoring for feeds with high customer impact and recurring payload-field drift.</li>
-        <li>Add duplicate-event guardrails before payout calculation so replayed conversion events do not create commission exposure.</li>
-        <li>Publish a weekly reliability scorecard for Product, Engineering, and Customer Success with root cause, severity, and owner.</li>
-      </ol>
+    <section class="main-grid">
+      <article class="panel">
+        <p class="eyebrow">Signal waterfall</p>
+        <h2>Reliability score composition</h2>
+        <div id="waterfall"></div>
+      </article>
+      <article class="panel">
+        <p class="eyebrow">Product memo</p>
+        <h2>Recommended roadmap actions</h2>
+        <div class="memo-list" id="recommendations"></div>
+      </article>
     </section>
   </main>
+  <script src="src/data.js"></script>
+  <script src="src/app.js"></script>
 </body>
 </html>

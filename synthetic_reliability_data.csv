@@ -1,0 +1,6 @@
+feed,integration_type,event_count,duplicate_rate,schema_drift_count,payout_gap,severity_score,customer_impact
+Creator API / Beauty,API,184000,0.019,12,8200,91,18 advertisers
+Affiliate CSV / Retail,CSV,242000,0.041,3,22000,88,commission exposure
+Publisher Pixel / Travel,Pixel,97000,0.014,5,16000,73,payout mismatch
+Advocate Webhook / SaaS,Webhook,65000,0.009,2,2100,64,9 accounts
+Content Partner / Finance,CSV,52000,0.006,1,900,41,dashboard lag

@@ -1,27 +1,37 @@
 # Partner Data Reliability Monitor
 
-JD-specific proof artifact for a Data Reliability Analyst role at impact.com.
+Static reliability-operations dashboard for partnership-marketing integration data. The project is a recruiter-facing proof artifact for a Data Reliability Analyst role: it shows how I would investigate feed issues, diagnose root causes, and translate reliability risk into product and engineering actions.
 
-## Why This Exists
+![Partner Data Reliability Monitor dashboard](docs/images/dashboard.png)
 
-impact.com needs analysts who can investigate customer data across integrations, distinguish source-data problems from integration logic errors, and translate reliability issues into roadmap-ready recommendations. This artifact frames that workflow as a compact reliability operating view for partnership marketing data.
+## Why this exists
 
-## Artifact Type
+impact.com-style partnership data flows through APIs, webhooks, CSV files, and tracking pixels. When that data is late, duplicated, malformed, or unreconciled, teams need an investigation view that separates source-data issues from integration logic errors and customer-impact risk.
 
-Static dashboard concept plus investigation memo.
+## What is in the project
 
-The project uses synthetic partner, conversion, API, and payout data because customer-level integration data is not public. The goal is to show how reliability checks, anomaly triage, and stakeholder communication would work before engineering time is spent.
+- A polished static dashboard in `index.html`
+- Modular UI/data files in `src/`
+- Synthetic integration reliability data in `synthetic_reliability_data.csv`
+- A data dictionary and methodology notes in `data_dictionary.md`
+- A screenshot captured from the rendered app in `docs/images/dashboard.png`
 
-## What It Covers
+## Dashboard sections
 
-- event-volume anomalies by partner and integration
-- duplicate conversion detection
-- schema-drift warnings across JSON payload fields
-- payout reconciliation gaps
-- customer-impact severity scoring
-- roadmap-ready recommendations for product and engineering
+- Reliability pulse: monitored feeds, open incidents, duplicate-event rate, and validation coverage
+- Incident queue: likely root cause and impact by feed
+- Detection coverage: freshness, schema drift, duplicate checks, payout reconciliation, and impact mapping
+- Reliability score composition: how each signal affects the operating score
+- Product memo: roadmap actions for schema monitoring, duplicate prevention, and incident handoffs
 
-## Resume Bullet
+## Run locally
+
+```bash
+python3 -m http.server 4173
+```
+
+Then open `http://localhost:4173`.
+
+## Resume-ready summary
 
 Built partner-data reliability monitor with synthetic conversion, API, and payout feeds, surfacing schema drift, duplicate events, and anomaly alerts for integration roadmap prioritization and customer-impact triage.
-
