@@ -11,6 +11,8 @@
 - Screenshot embedded in README at `docs/images/dashboard.png`
 - Synthetic integration reliability data and data dictionary
 - Product memo with three roadmap recommendations
+- README now includes data interpretation and a five-output walkthrough
+- Dashboard page labels each output: KPI pulse, triage table, validation diagnostic, score decomposition, and recommendations
 
 ## Resume Safety
 

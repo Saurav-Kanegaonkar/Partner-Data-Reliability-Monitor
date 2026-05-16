@@ -21,13 +21,17 @@
       </div>
     </header>
 
-    <section class="metric-grid" id="metrics"></section>
+    <section aria-label="Output 1 reliability pulse">
+      <span class="output-tag">Output 1 · Reliability KPI pulse</span>
+      <div class="metric-grid" id="metrics"></div>
+    </section>
 
     <section class="main-grid">
       <article class="panel wide">
         <div class="section-head">
           <div>
             <p class="eyebrow">Incident queue</p>
+            <span class="output-tag">Output 2 · Root-cause triage table</span>
             <h2>Root-cause triage by feed</h2>
           </div>
           <span class="pill">7 open incidents</span>
@@ -37,6 +41,7 @@
 
       <article class="panel">
         <p class="eyebrow">Detection coverage</p>
+        <span class="output-tag">Output 3 · Validation coverage diagnostic</span>
         <h2>Where validation rules catch issues before customers do</h2>
         <div id="coverage"></div>
       </article>
@@ -45,11 +50,13 @@
     <section class="main-grid">
       <article class="panel">
         <p class="eyebrow">Signal waterfall</p>
+        <span class="output-tag">Output 4 · Reliability score decomposition</span>
         <h2>Reliability score composition</h2>
         <div id="waterfall"></div>
       </article>
       <article class="panel">
         <p class="eyebrow">Product memo</p>
+        <span class="output-tag">Output 5 · Analytical recommendations</span>
         <h2>Recommended roadmap actions</h2>
         <div class="memo-list" id="recommendations"></div>
       </article>
