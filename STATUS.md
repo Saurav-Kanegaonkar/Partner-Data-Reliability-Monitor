@@ -4,7 +4,6 @@
 - GitHub: https://github.com/Saurav-Kanegaonkar/Partner-Data-Reliability-Monitor
 - Status: pushed
 - Resume Link Ready: Yes
-- Last commit: `b6aea47`
 
 ## What Exists
 
