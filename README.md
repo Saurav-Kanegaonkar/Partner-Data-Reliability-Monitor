@@ -1,6 +1,6 @@
 # Partner Data Reliability Monitor
 
-Static reliability-operations dashboard for partnership-marketing integration data. The project is a recruiter-facing proof artifact for a Data Reliability Analyst role: it shows how I would investigate feed issues, diagnose root causes, and translate reliability risk into product and engineering actions.
+I built this because partnership data reliability is not just an engineering hygiene problem; it affects advertiser trust, commission accuracy, customer support load, and roadmap priority. For a partnership-marketing platform, the important work is connecting late, duplicated, malformed, or unreconciled feeds to the customer and payout risk they create. This project shows how I would investigate feed issues, diagnose root causes, and translate reliability risk into product and engineering actions.
 
 ![Partner Data Reliability Monitor dashboard](docs/images/dashboard.png)
 
@@ -10,7 +10,7 @@ impact.com-style partnership data flows through APIs, webhooks, CSV files, and t
 
 ## What is in the project
 
-- A polished static dashboard in `index.html`
+- A polished dashboard in `index.html`
 - Modular UI/data files in `src/`
 - Synthetic integration reliability data in `synthetic_reliability_data.csv`
 - A data dictionary and methodology notes in `data_dictionary.md`
