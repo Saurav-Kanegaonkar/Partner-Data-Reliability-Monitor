@@ -7,7 +7,7 @@
 
 ## What Exists
 
-- Modular static reliability dashboard in `index.html` and `src/`
+- Modular interactive reliability dashboard in `index.html` and `src/`
 - Screenshot embedded in README at `docs/images/dashboard.png`
 - Synthetic integration reliability data and data dictionary
 - Product memo with three roadmap recommendations
