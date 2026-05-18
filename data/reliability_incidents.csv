@@ -1,0 +1,6 @@
+date,feed_name,integration_type,issue_type,likely_owner,anomaly_reason,impacted_customers,payout_variance_usd,severity_score,severity_band
+"2026-05-12","Referral Webhook / SaaS","Webhook","Freshness or missing data","Source data","late beyond SLA, event-count gap",23,-882,93,"High"
+"2026-05-15","FTP Batch / Home Goods","FTP","Freshness or missing data","Source data","late beyond SLA, event-count gap",39,674,81,"High"
+"2026-05-14","Affiliate CSV / Retail","CSV","Duplicate conversion replay","Integration logic","duplicate lift, payout variance",85,27800,74,"Medium"
+"2026-05-13","Creator API / Beauty","API","Schema or payload drift","Integration logic","schema drift, malformed payloads",45,849,69,"Medium"
+"2026-05-13","Server Postback / Fashion","Server","Duplicate conversion replay","Integration logic","duplicate lift, payout variance",44,13200,66,"Medium"

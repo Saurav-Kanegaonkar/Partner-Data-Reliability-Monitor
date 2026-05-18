@@ -3,63 +3,109 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Partner Data Reliability Monitor</title>
+  <title>Partner Data Reliability Workbench</title>
   <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
   <main class="app">
     <header class="hero">
       <div>
-        <p class="eyebrow">Reliability Ops</p>
-        <h1>Partner Data Reliability Monitor</h1>
-        <p>Investigation cockpit for partnership-marketing feeds: API payloads, CSV drops, pixel events, duplicate conversions, and payout reconciliation.</p>
+        <p class="eyebrow">Reliability operations</p>
+        <h1>Partner Data Reliability Workbench</h1>
+        <p>Investigation workspace for partner marketing feeds across APIs, webhooks, CSV batches, server postbacks, pixel events, duplicate conversions, and payout reconciliation.</p>
       </div>
       <div class="hero-card">
-        <span>Customer impact at risk</span>
-        <strong>$48k</strong>
-        <small>estimated payout exposure across high-severity incidents</small>
+        <span>Open payout exposure</span>
+        <strong id="hero-exposure">$43k</strong>
+        <small>estimated variance across active incident rows</small>
       </div>
     </header>
 
-    <section aria-label="Output 1 reliability pulse">
-      <span class="output-tag">Output 1 · Reliability KPI pulse</span>
-      <div class="metric-grid" id="metrics"></div>
-    </section>
-
-    <section class="main-grid">
-      <article class="panel wide">
-        <div class="section-head">
-          <div>
-            <p class="eyebrow">Incident queue</p>
-            <span class="output-tag">Output 2 · Root-cause triage table</span>
-            <h2>Root-cause triage by feed</h2>
-          </div>
-          <span class="pill">7 open incidents</span>
+    <section class="surface" aria-label="Reliability command center">
+      <div class="surface-head">
+        <div>
+          <p class="eyebrow">Surface 1</p>
+          <h2>Reliability command center</h2>
         </div>
-        <div id="incident-table"></div>
-      </article>
+        <span class="pill">Generated 35-day dataset</span>
+      </div>
+      <div class="metric-grid" id="metrics"></div>
 
-      <article class="panel">
-        <p class="eyebrow">Detection coverage</p>
-        <span class="output-tag">Output 3 · Validation coverage diagnostic</span>
-        <h2>Where validation rules catch issues before customers do</h2>
-        <div id="coverage"></div>
-      </article>
+      <div class="main-grid command-grid">
+        <article class="panel wide">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Incident queue</p>
+              <h3>Root-cause triage by feed</h3>
+            </div>
+            <span class="pill" id="incident-count">Open incidents</span>
+          </div>
+          <div id="incident-table"></div>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">Anomaly trend</p>
+          <h3>Severity and incident count</h3>
+          <div class="trend-chart" id="trend"></div>
+        </article>
+      </div>
     </section>
 
-    <section class="main-grid">
-      <article class="panel">
-        <p class="eyebrow">Signal waterfall</p>
-        <span class="output-tag">Output 4 · Reliability score decomposition</span>
-        <h2>Reliability score composition</h2>
-        <div id="waterfall"></div>
+    <section class="surface" aria-label="Investigation lab">
+      <div class="surface-head">
+        <div>
+          <p class="eyebrow">Surface 2</p>
+          <h2>Investigation lab</h2>
+        </div>
+        <span class="pill">Source vs integration ownership</span>
+      </div>
+      <div class="diagnostic-grid" id="diagnostics"></div>
+    </section>
+
+    <section class="surface" aria-label="Validation and roadmap">
+      <div class="surface-head">
+        <div>
+          <p class="eyebrow">Surface 3</p>
+          <h2>Validation and roadmap</h2>
+        </div>
+        <span class="pill">Rules, scoring, action plan</span>
+      </div>
+
+      <div class="main-grid">
+        <article class="panel">
+          <p class="eyebrow">Validation rules</p>
+          <h3>Detection coverage by control</h3>
+          <div id="rules"></div>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">Score model</p>
+          <h3>Reliability score composition</h3>
+          <div id="waterfall"></div>
+        </article>
+      </div>
+
+      <div class="main-grid">
+        <article class="panel">
+          <p class="eyebrow">Product memo</p>
+          <h3>Recommended roadmap actions</h3>
+          <div class="memo-list" id="recommendations"></div>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">SQL appendix</p>
+          <h3>Investigation questions</h3>
+          <div class="question-list" id="sql-questions"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="surface two-column-note" aria-label="Methodology note">
+      <article>
+        <p class="eyebrow">Methodology</p>
+        <h2>Synthetic data with defensible operating assumptions</h2>
       </article>
-      <article class="panel">
-        <p class="eyebrow">Product memo</p>
-        <span class="output-tag">Output 5 · Analytical recommendations</span>
-        <h2>Recommended roadmap actions</h2>
-        <div class="memo-list" id="recommendations"></div>
-      </article>
+      <p>The dataset models private partner integration telemetry using documented structures: event volumes, feed freshness, required payload fields, duplicate conversion ids, malformed records, payout variance, and affected accounts. Severity combines statistical lift and business impact so technical alerts can be prioritized by customer risk.</p>
     </section>
   </main>
   <script src="src/data.js"></script>

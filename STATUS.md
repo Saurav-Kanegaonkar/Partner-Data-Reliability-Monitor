@@ -1,19 +1,20 @@
 # Status
 
-- Project: Partner Data Reliability Monitor
+- Project: Partner Data Reliability Workbench
 - GitHub: https://github.com/Saurav-Kanegaonkar/Partner-Data-Reliability-Monitor
-- Status: pushed
+- Status: upgraded locally, ready to push
 - Resume Link Ready: Yes
 
 ## What Exists
 
-- Modular interactive reliability dashboard in `index.html` and `src/`
-- Screenshot embedded in README at `docs/images/dashboard.png`
-- Synthetic integration reliability data and data dictionary
-- Product memo with three roadmap recommendations
-- README now includes data interpretation and a five-output walkthrough
-- Dashboard page labels each output: KPI pulse, triage table, validation diagnostic, score decomposition, and recommendations
+- Three-surface reliability workbench in `index.html` and `src/`
+- Deterministic synthetic data generator in `scripts/generate_data.js`
+- Generated event and incident CSVs in `data/`
+- SQL investigation appendix in `sql/`
+- Data dictionary and methodology notes
+- Three rendered screenshots embedded in the README
+- Public README written with domain language rather than target-company naming
 
 ## Resume Safety
 
-Safe to link in the impact.com Data Reliability Analyst resume.
+Safe to link for a data reliability analyst application in the partner marketing platform domain.

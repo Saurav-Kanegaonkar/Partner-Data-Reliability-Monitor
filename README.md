@@ -1,63 +1,91 @@
-# Partner Data Reliability Monitor
+# Partner Data Reliability Workbench
 
-I built this because partnership data reliability is not just an engineering hygiene problem; it affects advertiser trust, commission accuracy, customer support load, and roadmap priority. For a partnership-marketing platform, the important work is connecting late, duplicated, malformed, or unreconciled feeds to the customer and payout risk they create. This project shows how I would investigate feed issues, diagnose root causes, and translate reliability risk into product and engineering actions.
+This project is a portfolio artifact for a data reliability analyst role in the partnership marketing and commerce platform domain. It models how an analyst can investigate partner integration data, distinguish source-data problems from integration-logic issues, size customer and payout risk, and turn recurring reliability signals into product and engineering recommendations.
 
-![Partner Data Reliability Monitor dashboard](docs/images/dashboard.png)
+The artifact is intentionally more than a dashboard. It includes a deterministic synthetic data generator, generated event and incident datasets, validation-rule coverage, root-cause diagnostics, SQL investigation prompts, and a roadmap memo.
 
-## Why this exists
+## Screenshots
 
-impact.com-style partnership data flows through APIs, webhooks, CSV files, and tracking pixels. When that data is late, duplicated, malformed, or unreconciled, teams need an investigation view that separates source-data issues from integration logic errors and customer-impact risk.
+![Reliability command center](docs/images/command-center.png)
 
-## What is in the project
+**Reliability command center.** This surface gives the operating readout: monitored feeds, high-severity incidents, duplicate-event rate, validation coverage, payout exposure, a root-cause incident queue, and a 14-day anomaly trend.
 
-- A polished dashboard in `index.html`
-- Modular UI/data files in `src/`
-- Synthetic integration reliability data in `synthetic_reliability_data.csv`
-- A data dictionary and methodology notes in `data_dictionary.md`
-- A screenshot captured from the rendered app in `docs/images/dashboard.png`
+![Investigation lab](docs/images/investigation-lab.png)
 
-## Dashboard sections
+**Investigation lab.** This surface shows feed-level diagnostic cards with the issue type, likely owner, evidence, impacted accounts or partners, and recommended product action.
 
-- Reliability pulse: monitored feeds, open incidents, duplicate-event rate, and validation coverage
-- Incident queue: likely root cause and impact by feed
-- Detection coverage: freshness, schema drift, duplicate checks, payout reconciliation, and impact mapping
-- Reliability score composition: how each signal affects the operating score
-- Product memo: roadmap actions for schema monitoring, duplicate prevention, and incident handoffs
+![Validation and roadmap surface](docs/images/validation-roadmap.png)
 
-## What the data says
+**Validation and roadmap.** This surface documents validation controls, reliability score composition, roadmap recommendations, and SQL questions for deeper investigation.
 
-The synthetic incident data shows that the highest customer risk is concentrated in feeds where data reliability and money movement intersect. Duplicate conversion events and payout-reconciliation gaps create immediate advertiser and partner trust risk because they can change reporting totals, commission exposure, and customer support volume.
+## What The Artifact Demonstrates
 
-The incident queue suggests two different problem classes. API freshness issues are operationally visible and can usually be handled with monitoring and retries. Schema drift and duplicate tracking are more dangerous because they can look like valid data until downstream reports or payouts disagree. That is why the dashboard separates the signal, likely root cause, customer impact, and severity instead of only showing an alert count.
+- Analytical investigation of partner feed anomalies across APIs, webhooks, CSV files, FTP batches, server postbacks, and pixels.
+- Root-cause separation between source-data problems, integration-logic defects, and shared edge cases.
+- Reliability KPIs that connect technical data quality issues to customer-facing risk.
+- Validation rules for freshness, schema contracts, duplicate conversion ids, payout reconciliation, and customer impact mapping.
+- Product-aware recommendations that translate recurring data issues into roadmap-ready actions.
+- SQL framing for anomaly review, incident prioritization, and payout variance investigation.
 
-The coverage view shows that freshness checks are strong, while payout reconciliation and customer-impact mapping need more coverage. The recommendation is to prioritize validation rules that connect technical issues to customer-facing consequences: "this feed is stale" matters, but "this feed creates payout exposure for these advertisers" is what makes the incident actionable.
+## Data
 
-## Output walkthrough
+The data is synthetic because customer-level integration, conversion, payout, and partner data is private. It does not represent any real platform, customer, partner, or financial performance.
 
-### Output 1: Reliability KPI pulse
+Generated files:
 
-This gives a fast operations readout: monitored feeds, open incidents, duplicate-event rate, validation coverage, and estimated customer impact. It answers whether reliability is improving or whether customer trust is currently at risk.
+- `data/integration_reliability_events.csv`, 350 daily feed observations across 10 synthetic integrations and 35 days.
+- `data/reliability_incidents.csv`, severity-ranked incident rows derived from the full dataset.
+- `src/data.js`, the front-end summary object generated from the same source rows.
+- `sql/reliability_investigation_queries.sql`, SQL examples for duplicate lift, ownership diagnosis, schema drift, and incident prioritization.
 
-### Output 2: Root-cause triage table
+The generator in `scripts/generate_data.js` creates feed-level telemetry using these assumptions:
 
-This table is the analyst workspace. It maps each feed issue to a likely root cause, estimated impact, and severity so product, support, and engineering can act from the same evidence.
+- API and server postback feeds have shorter freshness SLAs than CSV and FTP batch feeds.
+- Each feed has a baseline event volume, duplicate rate, SLA, and modeled partner count.
+- Daily volume follows a small weekly pattern plus random noise.
+- Injected incident scenarios include schema drift, retry replay, payout reconciliation variance, stale webhooks, and late batch delivery.
+- Severity combines freshness delay, duplicate-rate lift, schema drift, malformed payload rate, payout variance, and event-count gaps.
+- Likely ownership is inferred from source and integration evidence scores.
 
-### Output 3: Validation coverage diagnostic
+Full field definitions are in `data_dictionary.md`.
 
-This section explains where automated checks already protect the business and where gaps remain. It helps prioritize whether the next investment should be schema monitoring, duplicate detection, payout reconciliation, or incident routing.
+## Project Structure
 
-### Output 4: Reliability score decomposition
+```text
+.
+|-- data/
+|   |-- integration_reliability_events.csv
+|   `-- reliability_incidents.csv
+|-- docs/images/
+|   |-- command-center.png
+|   |-- investigation-lab.png
+|   `-- validation-roadmap.png
+|-- scripts/generate_data.js
+|-- sql/reliability_investigation_queries.sql
+|-- src/app.js
+|-- src/data.js
+|-- src/styles.css
+|-- data_dictionary.md
+`-- index.html
+```
 
-The waterfall shows how each reliability signal contributes to the operating score. It makes tradeoffs visible, especially when one strong area like freshness is offset by weaker payout or duplicate-event controls.
-
-### Output 5: Analytical recommendations
-
-The memo converts the analysis into roadmap actions: harden schema-drift detection, add duplicate-conversion prevention before payout calculation, and improve customer-impact mapping so incidents can be ranked by business exposure.
-
-## Run locally
+## Run Locally
 
 ```bash
+npm run generate
 python3 -m http.server 4173
 ```
 
 Then open `http://localhost:4173`.
+
+If port 4173 is already in use, run:
+
+```bash
+python3 -m http.server 4273
+```
+
+## Scope
+
+This project is a front-end portfolio artifact with a reproducible synthetic data layer. It demonstrates investigation logic, validation design, metric framing, and communication of recommended fixes.
+
+It does not connect to real customer systems, run scheduled monitoring jobs, or write back to production issue trackers. Those would be natural next steps in a production implementation.
